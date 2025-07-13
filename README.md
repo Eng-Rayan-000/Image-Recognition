@@ -1,21 +1,27 @@
-# Image-Recognition
 
-
-## 🐱🐶 Image Classifier (Cat vs Dog) using Keras
-
-This project uses a pre-trained Keras model to classify an image as either a **cat** or a **dog**.
 
 ---
 
-## 🛠️ Requirements
+# 🐶🐱 Cat vs Dog Image Classifier using Keras
 
-* Python 3.x
-* TensorFlow
-* Keras
-* Pillow
-* NumPy
+This project is a simple deep learning model that classifies an input image as either a **cat** or a **dog** using a pre-trained Keras model.
 
-Install dependencies using:
+---
+
+## 📁 Project Files
+
+| File Name        | Description                                      |
+| ---------------- | ------------------------------------------------ |
+| `keras_model.h5` | Pre-trained Keras model for image classification |
+| `labels.txt`     | Class labels file (e.g., `0 Cat`, `1 Dog`)       |
+| `image.jpg`      | Sample image to classify                         |
+| `main.py`        | Python script that loads the model and predicts  |
+
+---
+
+## 🛠 Requirements
+
+Make sure you have the following Python packages installed:
 
 ```bash
 pip install tensorflow pillow numpy
@@ -23,35 +29,35 @@ pip install tensorflow pillow numpy
 
 ---
 
-## 📁 Files
+## 📸 How It Works – Step-by-Step
 
-* `keras_Model.h5` → Trained Keras model
-* `labels.txt` → Text file with class names (e.g., `0 Cat`, `1 Dog`)
-* `image.jpg` → Test image for prediction
+### 1. **Import required libraries**
+
+```python
+from keras.models import load_model
+from PIL import Image, ImageOps
+import numpy as np
+```
+
+* Loads the model from disk.
+* Uses Pillow to process the input image.
+* Uses NumPy for numerical operations.
 
 ---
 
-## 🔍 How It Works – Step-by-Step Explanation
+### 2. **Load the trained model and class labels**
 
 ```python
-from keras.models import load_model      # Import Keras model loader
-from PIL import Image, ImageOps          # For image processing
-import numpy as np                       # For numerical operations
-```
-
-### 1. **Load the trained model and class labels**
-
-```python
-model = load_model("keras_Model.h5", compile=False)
+model = load_model("keras_model.h5", compile=False)
 class_names = open("labels.txt", "r").readlines()
 ```
 
-* Loads the pre-trained `.h5` model.
-* Reads the class labels from `labels.txt`.
+* `keras_model.h5` is a trained Keras model (e.g., from Teachable Machine).
+* `labels.txt` contains the class names.
 
 ---
 
-### 2. **Open and preprocess the image**
+### 3. **Prepare the image for prediction**
 
 ```python
 image = Image.open("image.jpg").convert("RGB")
@@ -60,35 +66,27 @@ image_array = np.asarray(image)
 normalized_image_array = (image_array.astype(np.float32) / 127.5) - 1
 ```
 
-* Opens the image and converts it to RGB.
-* Resizes it to 224×224 (the input size expected by the model).
-* Normalizes pixel values to the range \[-1, 1].
+* Opens the image and ensures it's in RGB format.
+* Resizes the image to 224×224 pixels.
+* Normalizes the pixel values to the range \[-1, 1].
 
 ---
 
-### 3. **Prepare the input array**
+### 4. **Create input array and run prediction**
 
 ```python
 data = np.ndarray(shape=(1, 224, 224, 3), dtype=np.float32)
 data[0] = normalized_image_array
-```
 
-* Creates an empty array with shape `(1, 224, 224, 3)` to hold one image.
-
----
-
-### 4. **Run prediction**
-
-```python
 prediction = model.predict(data)
 index = np.argmax(prediction)
 class_name = class_names[index].strip()
 confidence_score = prediction[0][index]
 ```
 
-* Gets the prediction probabilities.
-* Picks the index with the highest score.
-* Retrieves the class name and confidence score.
+* Sets up the data in the shape the model expects.
+* Predicts the class.
+* Extracts the predicted class name and confidence.
 
 ---
 
@@ -99,18 +97,17 @@ print("Class:", class_name)
 print("Confidence Score:", confidence_score)
 ```
 
-* Prints the predicted class (Cat or Dog) and its confidence.
+* Outputs the classification result and how confident the model is.
 
 ---
 
-## ✅ Example Output
-
-<img width="1227" height="126" alt="image" src="https://github.com/user-attachments/assets/928949a6-3695-4edb-9738-a307eae4ee9c" />
+## ✅ Output
 
 
----
+<img width="1227" height="126" alt="image" src="https://github.com/user-attachments/assets/7040b940-f157-4a31-a17e-a07ccf2e4052" />
 
-## 📌 Notes
 
-* Make sure all files (`.h5`, `.txt`, and `.jpg`) are in the same directory.
-* You can retrain the model using Teachable Machine, TensorFlow, or custom datasets.
+
+
+
+
