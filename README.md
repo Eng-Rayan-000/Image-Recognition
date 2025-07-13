@@ -105,10 +105,8 @@ print("Confidence Score:", confidence_score)
 
 ## ✅ Example Output
 
-```
-Class: Dog
-Confidence Score: 0.9876
-```
+<img width="1236" height="340" alt="image" src="https://github.com/user-attachments/assets/bfe15deb-ecd5-44da-ac56-7a8e9690da1d" />
+
 
 ---
 
