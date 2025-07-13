@@ -105,7 +105,7 @@ print("Confidence Score:", confidence_score)
 
 ## ✅ Example Output
 
-<img width="1236" height="340" alt="image" src="https://github.com/user-attachments/assets/bfe15deb-ecd5-44da-ac56-7a8e9690da1d" />
+<img width="1227" height="126" alt="image" src="https://github.com/user-attachments/assets/928949a6-3695-4edb-9738-a307eae4ee9c" />
 
 
 ---
